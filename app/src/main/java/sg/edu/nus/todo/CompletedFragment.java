@@ -46,6 +46,7 @@ public class CompletedFragment extends Fragment {
             row.add(res.getString(3));
             row.add(res.getString(4));
             row.add(res.getString(5));
+            row.add(res.getString(6));
             list.add(row);
         }
         return list;
