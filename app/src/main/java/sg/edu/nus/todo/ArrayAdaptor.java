@@ -1,6 +1,9 @@
 package sg.edu.nus.todo;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by woonyong123 on 5/10/2015.
@@ -66,6 +70,9 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
                 myDb.delete(index);
                 list.remove(position);
                 adapter.notifyDataSetChanged();
+                Intent myIntent = new Intent("SOC_Students");
+                myIntent.putExtra("MSG", "Task Deleted");
+                context.sendBroadcast(myIntent);
             }
         });
 
@@ -78,7 +85,19 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
                 String index = list.get(position).get(0);
                 myDb.done(index);
                 list.remove(position);
+                ArrayList<String> messages = new ArrayList<String>();
+                messages.add("Congratulations for completing a task!");
+                messages.add("One job well done can be redemption for many a mistake of the past. Keep it up.");
+                messages.add("Less problems, more solutions – keep working like this and nothing will be able to stop you from reaching the top. Good job.");
+                messages.add("Less problems, more solutions – keep working like this and nothing will be able to stop you from reaching the top. Good job.");
+                messages.add("One less task for the day! Good Job.");
+                messages.add("One more task down for the day! Keep up the good work!");
+                Random rand = new Random();
+                int id = rand.nextInt((5) + 1);
                 adapter.notifyDataSetChanged();
+                Intent myIntent = new Intent("SOC_Students");
+                myIntent.putExtra("MSG", messages.get(id));
+                context.sendBroadcast(myIntent);
             }
         });
 

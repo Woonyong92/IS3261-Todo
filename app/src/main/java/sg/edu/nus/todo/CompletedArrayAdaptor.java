@@ -1,6 +1,7 @@
 package sg.edu.nus.todo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,9 @@ public class CompletedArrayAdaptor extends BaseAdapter implements ListAdapter {
                 myDb.delete(index);
                 list.remove(position);
                 adapter.notifyDataSetChanged();
+                Intent myIntent = new Intent("SOC_Students");
+                myIntent.putExtra("MSG", "Task Deleted");
+                context.sendBroadcast(myIntent);
             }
         });
 
