@@ -20,6 +20,14 @@
             android:name=".AddTask"
             android:label="@string/title_activity_add_task" >
         </activity>
+        <activity
+            android:name=".ShowTask"
+            android:label="@string/title_activity_edit_task" >
+        </activity>
+        <activity
+            android:name=".EditTask"
+            android:label="@string/title_activity_edit_task" >
+        </activity>
     </application>
 
 </manifest>

@@ -59,6 +59,22 @@ public class MyDBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean editData(String id, String name, String description, String endDate, String endTime, String location, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(columnName2, name);
+        contentValues.put(columnName3, description);
+        contentValues.put(columnName4, endDate);
+        contentValues.put(columnName5, endTime);
+        contentValues.put(columnName6, location);
+        contentValues.put(columnName7, status);
+        int result = db.update(tableName, contentValues, columnName1 + " " + "=" + id, null);
+        if (result == 1)
+            return true;
+        else
+            return false;
+    }
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " +tableName, null);
