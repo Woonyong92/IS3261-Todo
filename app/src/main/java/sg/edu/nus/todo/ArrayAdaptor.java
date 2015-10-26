@@ -1,9 +1,7 @@
 package sg.edu.nus.todo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +54,7 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
 
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.taskTextView);
-        String text = list.get(position).get(5);
+        String text = list.get(position).get(1);
         listItemText.setText(text);
 
         //Handle buttons and add onClickListeners
@@ -98,6 +96,24 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
                 Intent myIntent = new Intent("SOC_Students");
                 myIntent.putExtra("MSG", messages.get(id));
                 context.sendBroadcast(myIntent);
+            }
+        });
+
+        TextView taskTextView = (TextView) view.findViewById(R.id.taskTextView);
+
+        taskTextView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                myDb = new MyDBHelper(context);
+                Intent myIntent = new Intent(context, ShowTask.class);
+                myIntent.putExtra("id", list.get(position).get(0));
+                myIntent.putExtra("name", list.get(position).get(1));
+                myIntent.putExtra("description", list.get(position).get(2));
+                myIntent.putExtra("endDate", list.get(position).get(3));
+                myIntent.putExtra("endTime", list.get(position).get(4));
+                myIntent.putExtra("location", list.get(position).get(5));
+                myIntent.putExtra("status", list.get(position).get(6));
+                v.getContext().startActivity(myIntent);
             }
         });
 

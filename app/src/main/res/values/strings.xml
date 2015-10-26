@@ -19,9 +19,11 @@
     <string name="upcoming">Upcoming</string>
     <string name="expired">Expired</string>
     <string name="completed">Completed</string>
+    <string name="editTask">Edit Task</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_completed_view">completed_view</string>
+    <string name="title_activity_edit_task">EditTask</string>
 
 </resources>
