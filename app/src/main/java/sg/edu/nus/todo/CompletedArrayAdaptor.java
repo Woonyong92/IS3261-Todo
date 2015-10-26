@@ -67,6 +67,9 @@ public class CompletedArrayAdaptor extends BaseAdapter implements ListAdapter {
                 myDb.delete(index);
                 list.remove(position);
                 adapter.notifyDataSetChanged();
+                Intent myIntent = new Intent("SOC_Students");
+                myIntent.putExtra("MSG", "Task Deleted");
+                context.sendBroadcast(myIntent);
             }
         });
 

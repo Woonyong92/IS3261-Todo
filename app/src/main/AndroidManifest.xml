@@ -28,6 +28,11 @@
             android:name=".EditTask"
             android:label="@string/title_activity_edit_task" >
         </activity>
+        <receiver android:name=".PersistentReceiver" >
+            <intent-filter>
+                <action android:name="SOC_Students" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
