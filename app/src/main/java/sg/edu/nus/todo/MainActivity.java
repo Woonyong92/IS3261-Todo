@@ -4,16 +4,20 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
+    IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
+
+        Intent batteryStatus = this.registerReceiver(null, ifilter);
+
+        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+
+        if (isCharging)
+            Toast.makeText(this, "Battery is charging", Toast.LENGTH_LONG).show() ;
+        else
+            Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;
     }
 
     @Override
