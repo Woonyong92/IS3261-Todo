@@ -1,0 +1,176 @@
+
+body {
+	width:  100%;
+	height: 100%;
+	background-image:
+	    linear-gradient(
+	       to right,
+	       #F60,
+	       #FC6 50%,
+	       #FFC 100%
+	    );
+	}
+
+}
+
+.weather_icon {
+    width:64px;
+	height:64px;
+
+}
+
+
+.red_btn {
+    background: #A00;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.red_btn:active {
+    background: #500;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.green_btn {
+    background: #0A0;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.green_btn:active {
+    background: #050;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.blue_btn {
+    background: #00A;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.blue_btn:active {
+    background: #005;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.edit_text_box {
+    background: #CCC;
+    color: #000;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.drop_down_list {
+    background: #EEE;
+    color: #000;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.map {
+    border-radius: 10px;
+    width:  96%;
+    height: 40%;
+}
+
+.json_text {
+    background: #EE0;
+    color: #000;
+    border-radius: 10px;
+    padding: 1.2em 2em;
+    text-decoration: none;
+
+    width: 50%;
+    height: 20%;
+    font-size: 14pt;
+    font-family:verdana;
+    font-weight:bold;
+    text-align:center;
+   // text-shadow:-2px 2px 7px #F03;
+}
+
+
+#weatherIcon {
+    position:absolute;
+    left: 2%;
+    top: 70%;
+	overflow: hidden;
+	-webkit-animation:'rot3d' 4s linear 0s infinite normal;
+}
+
+@-webkit-keyframes 'rot3d' {
+	0% {-webkit-
+transform: rotateY(0deg);}
+	100% {-webkit-transform: rotateY(360deg);}
+}
+
+
+#idLatInput {
+	position:absolute;
+	left: 2%;
+	top: 2%;
+}
+
+#idLngInput {
+	position:absolute;
+	left: 50%;
+	top: 2%;
+}
+
+
+#locationName {
+	position:absolute;
+	left: 5%;
+	top:  10%;
+}
+
+
+#idGoButton {
+	position:absolute;
+	left: 32%;
+	top: 10%;
+}
+
+
+#marking {
+	position: absolute;
+	left: 50%;
+	top:  10%;
+}
+
+#clearMarker {
+	position: absolute;
+	left: 75%;
+	top:  10%;
+}
+
+#myMap {
+	position: absolute;
+	left: 2%;
+	top: 20%;
+}
+
+
+#JSONText {
+    position: absolute;
+	left:20%;
+	top:70%;
+}
+
