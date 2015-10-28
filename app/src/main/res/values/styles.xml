@@ -5,4 +5,36 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--Text Appearance-->
+    <style name="TextAppearance.Burpple.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <dimen name="action_bar_default_padding_material">4dp</dimen>
+    <dimen name="button_big_height">42dp</dimen>
+
+    <!--Text styles-->
+    <style name="Text">
+        <item name="android:textSize">@dimen/font</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="Text.Overlay">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/dark_gray</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDy">0</item>
+    </style>
+
+    <style name="Text.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Ash">
+        <item name="android:textColor">@color/med_gray</item>
+    </style>
+
 </resources>

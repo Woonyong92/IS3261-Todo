@@ -1,18 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation = "vertical"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:orientation="vertical">
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout
-        android:orientation ="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/name">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/taskName"
             android:id="@+id/textName" />
@@ -20,17 +26,23 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editName" />
+            android:id="@+id/editName"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/taskName"
+            android:inputType="textPersonName|textCapWords"
+            android:textSize="@dimen/font_input" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation ="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/description">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/taskDescription"
             android:id="@+id/textDescription" />
@@ -38,26 +50,34 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editDescription" />
+            android:id="@+id/editDescription"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/taskDescription"
+            android:inputType="textPersonName|textCapWords"
+            android:textSize="@dimen/font_input"/>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation ="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/endDate">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/endDate"
             android:id="@+id/textEndDate" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/endDate"
             android:id="@+id/editEndDate"
             android:focusable="false"
             android:layout_weight="1" />
@@ -65,22 +85,26 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation ="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/endTime">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/endTime"
             android:id="@+id/textEndTime" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="time"
             android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/endTime"
             android:focusable="false"
             android:id="@+id/editEndTime"
             android:layout_weight="1" />
@@ -88,13 +112,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation ="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/location">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/location"
             android:id="@+id/textLocation" />
@@ -102,6 +128,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/location"
+            android:inputType="textPersonName|textCapWords"
+            android:textSize="@dimen/font_input"
             android:id="@+id/editLocation" />
     </LinearLayout>
 
