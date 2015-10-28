@@ -2,6 +2,7 @@ package sg.edu.nus.todo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,5 +78,12 @@ public class ShowTask extends Activity {
         myIntent.putExtra("endTime", endTimes);
         myIntent.putExtra("location", locations);
         startActivity(myIntent);
+    }
+
+    public void onClick_goToGetLocation(View view){
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+locations);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 }

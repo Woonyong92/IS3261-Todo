@@ -25,5 +25,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_completed_view">completed_view</string>
     <string name="title_activity_edit_task">EditTask</string>
+    <string name="title_activity_location_map">Map</string>
+    <string name="title_activity_location_maps">Map</string>
+    <string name="getLocation">Get Location</string>
 
 </resources>
