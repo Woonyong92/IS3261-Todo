@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up today_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -101,10 +101,4 @@ public class MainActivity extends Activity {
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
     }
-    public void onClick_changeToMap(View view){
-        Intent myIntent;
-        myIntent = new Intent(this, LocationMaps.class);
-        startActivity(myIntent);
-    }
-
 }
