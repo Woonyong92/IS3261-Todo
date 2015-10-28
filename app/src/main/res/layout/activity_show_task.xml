@@ -118,4 +118,24 @@
             android:id="@+id/editLocation" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/getLocation"
+        style="@style/Button.Green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/getLocation"
+        android:onClick = "onClick_goToGetLocation"/>
+
+    <Button
+        android:id="@+id/editTask"
+        style="@style/Button.Green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/editTask"
+        android:onClick = "onClick_goToEditTask"/>
+
+
 </LinearLayout>
