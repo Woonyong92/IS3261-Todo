@@ -1,5 +1,6 @@
 package sg.edu.nus.todo;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.app.FragmentManager;
@@ -13,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up today_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -100,10 +101,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
     }
-    public void onClick_changeToMap(View view){
-        Intent myIntent;
-        myIntent = new Intent(this, LocationMaps.class);
-        startActivity(myIntent);
-    }
-
 }
