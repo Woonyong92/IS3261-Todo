@@ -100,4 +100,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
     }
+    public void onClick_changeToMap(View view){
+        Intent myIntent;
+        myIntent = new Intent(this, LocationMaps.class);
+        startActivity(myIntent);
+    }
+
 }

@@ -45,6 +45,14 @@
                 android:text="@string/completed"
                 android:id="@+id/completed"
                 android:onClick = "onClick_changeToCompleted"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Map"
+                android:id="@+id/map"
+                android:onClick = "onClick_changeToMap"/>
         </LinearLayout>
     </HorizontalScrollView>
 

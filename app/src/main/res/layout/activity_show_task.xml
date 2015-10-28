@@ -108,6 +108,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/getLocation"
+        android:id="@+id/getLocation"
+        android:layout_gravity="center_horizontal"
+        android:onClick = "onClick_goToGetLocation"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/editTask"
         android:id="@+id/editTask"
         android:layout_gravity="center_horizontal"
