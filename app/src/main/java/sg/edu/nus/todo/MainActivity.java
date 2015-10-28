@@ -1,5 +1,6 @@
 package sg.edu.nus.todo;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.app.FragmentManager;
@@ -13,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
