@@ -1,41 +1,31 @@
 package sg.edu.nus.todo;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 
-public class Tutorial extends Activity {
+public class Tutorial2 extends AppCompatActivity {
 
     @Override
-    @JavascriptInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial);
+        setContentView(R.layout.activity_tutorial2);
 
-        WebView wv = (WebView)findViewById(R.id.webView1);
+        WebView wv = (WebView)findViewById(R.id.webView2);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
-        wv.loadUrl("file:///android_asset/www/Tutorial.html");
-
-
+        wv.loadUrl("file:///android_asset/www/Tutorial2.html");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tutorial, menu);
+        getMenuInflater().inflate(R.menu.menu_tutorial2, menu);
         return true;
     }
 
@@ -54,12 +44,8 @@ public class Tutorial extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goToTutorial2(View view) {
-        Intent myIntent = new Intent(this, Tutorial2.class);
+    public void goToApp(View view) {
+        Intent myIntent = new Intent(this, MainActivity.class);
         startActivity(myIntent);
     }
-
-
 }
-
-
