@@ -19,7 +19,6 @@ import android.widget.Button;
 public class Tutorial extends Activity {
 
     @Override
-    @JavascriptInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
@@ -28,8 +27,6 @@ public class Tutorial extends Activity {
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient());
         wv.loadUrl("file:///android_asset/www/Tutorial.html");
-
-
     }
 
     @Override
@@ -58,8 +55,4 @@ public class Tutorial extends Activity {
         Intent myIntent = new Intent(this, Tutorial2.class);
         startActivity(myIntent);
     }
-
-
 }
-
-
