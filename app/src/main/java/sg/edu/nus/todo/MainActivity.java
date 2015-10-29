@@ -1,5 +1,6 @@
 package sg.edu.nus.todo;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,12 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
     IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
+
         Intent batteryStatus = this.registerReceiver(null, ifilter);
 
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Battery is charging", Toast.LENGTH_LONG).show() ;
         else
             Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;
-
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up today_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -103,16 +103,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
     }
-
-/*    public class MyBroadcastReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent i){
-            int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                    status == BatteryManager.BATTERY_STATUS_FULL;
-
-            Toast.makeText(context, "Battery is " + isCharging, Toast.LENGTH_LONG).show() ;
-        }
-    }*/
 }

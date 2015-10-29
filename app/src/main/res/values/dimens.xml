@@ -2,4 +2,18 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="font">14sp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="cardview_default_margin">4dp</dimen>
+    <dimen name="cardview_default_padding">4dp</dimen>
+    <dimen name="btn_frontpage_max_width">300dp</dimen>
+    <dimen name="btn_frontpage_margin">20dp</dimen>
+    <dimen name="font_frontpage_title">28sp</dimen>
+    <dimen name="font_frontpage_subtitle">16sp</dimen>
+    <dimen name="form_margin">20dp</dimen>
+    <dimen name="cardview_corner_radius_default">2dp</dimen>
+    <dimen name="font_input">16sp</dimen>
 </resources>

@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/completed"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:id="@+id/textView" />
 
     <ScrollView
