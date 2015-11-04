@@ -137,11 +137,11 @@ public class EditTask extends Activity {
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
                                     null, contactName.getText().toString(), contactNumber.getText().toString());
                             if (isInserted) {
-                                Toast.makeText(EditTask.this, "Data Updated", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditTask.this, "Task Updated", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(EditTask.this, MainActivity.class);
                                 startActivity(myIntent);
                             } else
-                                Toast.makeText(EditTask.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditTask.this, "Task not Updated", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
