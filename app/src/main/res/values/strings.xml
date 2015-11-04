@@ -20,6 +20,11 @@
     <string name="expired">Expired</string>
     <string name="completed">Completed</string>
     <string name="editTask">Edit Task</string>
+    <string name="contact">Person</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
+    <string name="updateTask">Update Task</string>
+    updateTask
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

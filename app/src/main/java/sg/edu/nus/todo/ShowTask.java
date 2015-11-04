@@ -13,8 +13,8 @@ import android.widget.TextView;
 public class ShowTask extends Activity {
 
     Button btnEditTask;
-    TextView name, description, location, endTime, endDate;
-    String ids, names, descriptions, endDates, endTimes, locations, status;
+    TextView name, description, location, endTime, endDate, contactName, contactNumber;
+    String ids, names, descriptions, endDates, endTimes, locations, status, contactNames, contactNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,7 @@ public class ShowTask extends Activity {
         status = getIntent().getStringExtra("status");
         if (status == null) {
             setContentView(R.layout.activity_show_task);
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_show_completed_task);
         }
         name = (TextView) findViewById(R.id.editName);
@@ -31,6 +30,8 @@ public class ShowTask extends Activity {
         endDate = (TextView) findViewById(R.id.editEndDate);
         endTime = (TextView) findViewById(R.id.editEndTime);
         location = (TextView) findViewById(R.id.editLocation);
+        contactName = (TextView) findViewById(R.id.editContactName);
+        contactNumber = (TextView) findViewById(R.id.editContactNumber);
         btnEditTask = (Button) findViewById(R.id.editTask);
         ids = getIntent().getStringExtra("id");
         names = getIntent().getStringExtra("name");
@@ -39,12 +40,15 @@ public class ShowTask extends Activity {
         endTimes = getIntent().getStringExtra("endTime");
         locations = getIntent().getStringExtra("location");
         status = getIntent().getStringExtra("status");
+        contactNames = getIntent().getStringExtra("contactName");
+        contactNumbers = getIntent().getStringExtra("contactNumber");
         name.setText(names);
         description.setText(descriptions);
         endDate.setText(endDates);
         endTime.setText(endTimes);
         location.setText(locations);
-
+        contactName.setText(contactNames);
+        contactNumber.setText(contactNumbers);
     }
 
     @Override
@@ -77,13 +81,30 @@ public class ShowTask extends Activity {
         myIntent.putExtra("endDate", endDates);
         myIntent.putExtra("endTime", endTimes);
         myIntent.putExtra("location", locations);
+        myIntent.putExtra("contactName", contactNames);
+        myIntent.putExtra("contactNumber", contactNumbers);
         startActivity(myIntent);
     }
 
-    public void onClick_goToGetLocation(View view){
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+locations);
+    public void onClick_goToGetLocation(View view) {
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locations);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
+    }
+
+    public void onClick_goToSMS(View view) {
+        Intent myIntent = new Intent(android.content.Intent.ACTION_VIEW);
+        myIntent.putExtra("address", contactNumbers);
+        myIntent.putExtra("sms_body", "");
+        myIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(myIntent);
+    }
+
+    public void onClick_Call(View view) {
+        Intent i;
+
+        i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:" + contactNumbers));
+        startActivity(i);
     }
 }
