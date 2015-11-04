@@ -6,7 +6,8 @@
     android:paddingBottom="10dp"
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout
@@ -133,6 +134,52 @@
             android:inputType="textPersonName|textCapWords"
             android:textSize="@dimen/font_input"
             android:id="@+id/editLocation" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:layout_weight="0.16">
+
+        <TextView
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/contact"
+            android:id="@+id/textContact" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/textContactName"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/name"
+            android:inputType="textPersonName|textCapWords"
+            android:textSize="@dimen/font_input" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:id="@+id/textNumber"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/number"
+            android:inputType="number"
+            android:textSize="@dimen/font_input" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/add_contacts"
+            android:id="@+id/addContacts"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            />
     </LinearLayout>
 
     <Button

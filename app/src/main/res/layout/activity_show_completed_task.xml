@@ -118,4 +118,32 @@
             android:id="@+id/editLocation" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/Text.Bold"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/contact"
+            android:id="@+id/textContact" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:id="@+id/editContactName" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:id="@+id/editContactNumber" />
+
+    </LinearLayout>
+
 </LinearLayout>
