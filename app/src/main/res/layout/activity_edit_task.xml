@@ -180,11 +180,13 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/editTask"
         android:id="@+id/editTask"
-        android:layout_gravity="center_horizontal"/>
+        style="@style/Button.Green"
+        android:layout_width="351dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/updateTask" />
 
 
 </LinearLayout>

@@ -123,11 +123,11 @@ public class AddTask extends Activity {
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
                                     null, contactName.getText().toString(), contactNumber.getText().toString());
                             if (isInserted) {
-                                Toast.makeText(AddTask.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
                                 startActivity(myIntent);
                             } else
-                                Toast.makeText(AddTask.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
