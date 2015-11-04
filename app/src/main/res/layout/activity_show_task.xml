@@ -145,6 +145,26 @@
             android:layout_weight="0.4"
             android:id="@+id/editContactNumber" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/phone"
+            android:id="@+id/call"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:onClick="onClick_Call"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/sms"
+            android:id="@+id/sms"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:onClick = "onClick_goToSMS"/>
+
 
     </LinearLayout>
 

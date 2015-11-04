@@ -22,8 +22,7 @@ public class ShowTask extends Activity {
         status = getIntent().getStringExtra("status");
         if (status == null) {
             setContentView(R.layout.activity_show_task);
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_show_completed_task);
         }
         name = (TextView) findViewById(R.id.editName);
@@ -87,10 +86,25 @@ public class ShowTask extends Activity {
         startActivity(myIntent);
     }
 
-    public void onClick_goToGetLocation(View view){
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+locations);
+    public void onClick_goToGetLocation(View view) {
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locations);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
+    }
+
+    public void onClick_goToSMS(View view) {
+        Intent myIntent = new Intent(android.content.Intent.ACTION_VIEW);
+        myIntent.putExtra("address", contactNumbers);
+        myIntent.putExtra("sms_body", "");
+        myIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(myIntent);
+    }
+
+    public void onClick_Call(View view) {
+        Intent i;
+
+        i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:" + contactNumbers));
+        startActivity(i);
     }
 }
