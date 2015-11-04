@@ -13,8 +13,8 @@ import android.widget.TextView;
 public class ShowTask extends Activity {
 
     Button btnEditTask;
-    TextView name, description, location, endTime, endDate;
-    String ids, names, descriptions, endDates, endTimes, locations, status;
+    TextView name, description, location, endTime, endDate, contactName, contactNumber;
+    String ids, names, descriptions, endDates, endTimes, locations, status, contactNames, contactNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,8 @@ public class ShowTask extends Activity {
         endDate = (TextView) findViewById(R.id.editEndDate);
         endTime = (TextView) findViewById(R.id.editEndTime);
         location = (TextView) findViewById(R.id.editLocation);
+        contactName = (TextView) findViewById(R.id.editContactName);
+        contactNumber = (TextView) findViewById(R.id.editContactNumber);
         btnEditTask = (Button) findViewById(R.id.editTask);
         ids = getIntent().getStringExtra("id");
         names = getIntent().getStringExtra("name");
@@ -39,12 +41,15 @@ public class ShowTask extends Activity {
         endTimes = getIntent().getStringExtra("endTime");
         locations = getIntent().getStringExtra("location");
         status = getIntent().getStringExtra("status");
+        contactNames = getIntent().getStringExtra("contactName");
+        contactNumbers = getIntent().getStringExtra("contactNumber");
         name.setText(names);
         description.setText(descriptions);
         endDate.setText(endDates);
         endTime.setText(endTimes);
         location.setText(locations);
-
+        contactName.setText(contactNames);
+        contactNumber.setText(contactNumbers);
     }
 
     @Override
@@ -77,6 +82,8 @@ public class ShowTask extends Activity {
         myIntent.putExtra("endDate", endDates);
         myIntent.putExtra("endTime", endTimes);
         myIntent.putExtra("location", locations);
+        myIntent.putExtra("contactName", contactNames);
+        myIntent.putExtra("contactNumber", contactNumbers);
         startActivity(myIntent);
     }
 

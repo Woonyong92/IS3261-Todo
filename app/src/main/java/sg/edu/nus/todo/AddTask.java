@@ -3,14 +3,20 @@ package sg.edu.nus.todo;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts.People;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -20,9 +26,10 @@ import java.util.Locale;
 
 public class AddTask extends Activity {
     MyDBHelper myDb;
-    Button btnAddTask;
-    EditText name, description, location, endTime, endDate;
+    Button btnAddTask, btnAddContact;
+    EditText name, description, location, endTime, endDate, contactName, contactNumber;
     Calendar myCalendar = Calendar.getInstance();
+    public static final int PICK_CONTACT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +41,52 @@ public class AddTask extends Activity {
         endDate = (EditText) findViewById(R.id.editEndDate);
         endTime = (EditText) findViewById(R.id.editEndTime);
         location = (EditText) findViewById(R.id.editLocation);
+        contactName = (EditText) findViewById(R.id.textContactName);
+        contactNumber = (EditText) findViewById(R.id.textNumber);
+        btnAddContact = (Button) findViewById(R.id.addContacts);
+        btnAddContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, PICK_CONTACT);
+            }
+        });
         btnAddTask = (Button) findViewById(R.id.addTask);
         addTask();
         addTime();
         addDate();
+    }
+
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        switch (reqCode) {
+            case (PICK_CONTACT) :
+                ContentResolver cr = getContentResolver();
+                Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+                cur.moveToFirst();
+                try {
+                    Uri uri = data.getData();
+                    cur = getContentResolver().query(uri, null, null, null, null);
+                    cur.moveToFirst();
+                    String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+                    String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    contactName.setText(name);
+                    Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phone = pCur.getString(
+                                pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        contactNumber.setText(phone);
+                    }
+                    pCur.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     @Override
@@ -71,7 +120,8 @@ public class AddTask extends Activity {
                             Toast.makeText(AddTask.this, "Ensure name is filled up", Toast.LENGTH_SHORT).show();
                         else {
                             boolean isInserted = myDb.insertData(name.getText().toString(),
-                                    description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(), null);
+                                    description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
+                                    null, contactName.getText().toString(), contactNumber.getText().toString());
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Data Inserted", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
@@ -81,7 +131,8 @@ public class AddTask extends Activity {
                         }
                     }
                 }
-        );}
+        );
+    }
 
     public void addDate() {
         endDate.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +146,7 @@ public class AddTask extends Activity {
             }
         });
     }
+
     public void addTime() {
         endTime.setOnClickListener(new View.OnClickListener() {
 
@@ -108,7 +160,7 @@ public class AddTask extends Activity {
                 mTimePicker = new TimePickerDialog(AddTask.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        endTime.setText( selectedHour + ":" + selectedMinute);
+                        endTime.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
