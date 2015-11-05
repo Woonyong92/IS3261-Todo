@@ -7,8 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class MyDBHelper extends SQLiteOpenHelper {
     public static final int datbaseVersion = 1;
@@ -28,7 +30,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             " TEXT NOT NULL, " + columnName4 + " DATE NOT NULL, " + columnName5 + " IIME, " + columnName6 + " TEXT NOT NULL, " +
             columnName7 + " TEXT, " + columnName8 + " TEXT, " + columnName9 + " TEXT);";
     private static final String SQLite_DELETE = "DROP TABLE IF EXISTS " + tableName;
-    Calendar myCalender = Calendar.getInstance();
+    Calendar myCalender = Calendar.getInstance(TimeZone.getTimeZone("GMT+8:00"));
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public MyDBHelper(Context context) {
@@ -93,8 +95,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public Cursor getToday() {
         SQLiteDatabase db = this.getWritableDatabase();
         String today = df.format(myCalender.getTime());
-        String[] args={today};
-        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " = ? AND " + columnName7 + " IS NULL", args);
+        String time = Integer.toString(myCalender.get(Calendar.HOUR_OF_DAY)) + ":" + Integer.toString(myCalender.get(Calendar.MINUTE));
+        String[] args={today, time};
+        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " = ? AND " + columnName5 + " >= ? AND " + columnName7 + " IS NULL", args);
         return res;
     }
 
@@ -109,8 +112,9 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public Cursor getExpired() {
         SQLiteDatabase db = this.getWritableDatabase();
         String today = df.format(myCalender.getTime());
-        String[] args={today};
-        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " < ? AND " + columnName7 + " IS NULL", args);
+        String time = Integer.toString(myCalender.get(Calendar.HOUR_OF_DAY)) + ":" + Integer.toString(myCalender.get(Calendar.MINUTE));
+        String[] args={today, time};
+        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " <= ? AND " + columnName5 + " < ? AND " + columnName7 + " IS NULL", args);
         return res;
     }
 
