@@ -95,7 +95,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public Cursor getToday() {
         SQLiteDatabase db = this.getWritableDatabase();
         String today = df.format(myCalender.getTime());
-        String time = Integer.toString(myCalender.get(Calendar.HOUR_OF_DAY)) + ":" + Integer.toString(myCalender.get(Calendar.MINUTE));
+        String time = String.format("%02d:%02d", myCalender.get(Calendar.HOUR_OF_DAY), myCalender.get(Calendar.MINUTE));
         String[] args={today, time};
         Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " = ? AND " + columnName5 + " >= ? AND " + columnName7 + " IS NULL", args);
         return res;
@@ -112,7 +112,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public Cursor getExpired() {
         SQLiteDatabase db = this.getWritableDatabase();
         String today = df.format(myCalender.getTime());
-        String time = Integer.toString(myCalender.get(Calendar.HOUR_OF_DAY)) + ":" + Integer.toString(myCalender.get(Calendar.MINUTE));
+        String time = String.format("%02d:%02d", myCalender.get(Calendar.HOUR_OF_DAY), myCalender.get(Calendar.MINUTE));
         String[] args={today, time};
         Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName4 + " <= ? AND " + columnName5 + " < ? AND " + columnName7 + " IS NULL", args);
         return res;
