@@ -105,22 +105,6 @@ public class MainActivity extends Activity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
-        showNotification();
     }
 
-    public void showNotification() {
-        PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
-        Resources r = getResources();
-        Notification notification = new NotificationCompat.Builder(this)
-                .setTicker("Testing")
-                .setSmallIcon(android.R.drawable.ic_menu_report_image)
-                .setContentTitle("Testing")
-                .setContentText("Testing...")
-                .setContentIntent(pi)
-                .setAutoCancel(true)
-                .build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
-    }
 }

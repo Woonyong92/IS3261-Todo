@@ -53,8 +53,8 @@ public class ScheduleClient {
      * Tell our service to set an alarm for the given date
      * @param c a date to set the notification for
      */
-    public void setAlarmForNotification(Calendar c){
-         mBoundService.setAlarm(c);
+    public void setAlarmForNotification(Calendar c, int id){
+         mBoundService.setAlarm(c, id);
     }
 
     /**

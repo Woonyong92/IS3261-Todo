@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -120,6 +121,24 @@ public class MyDBHelper extends SQLiteOpenHelper {
         String[] args={done};
         Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName7 + " = ?", args);
         return res;
+    }
+
+    public int getID(String name) {
+        Log.d("db helper", "NAMMEEEEEEEE ISSS " +name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] args={name};
+        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName2 + " = ?", args);
+        res.moveToFirst();
+        return res.getInt(0);
+    }
+
+    public String getName(int id) {
+        Log.d("db helper", "id is " +id);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] args={Integer.toString(id)};
+        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName1 + " = ?", args);
+        res.moveToFirst();
+        return res.getString(1);
     }
 
     public void removeAll(){

@@ -130,7 +130,7 @@ public class AddTask extends Activity {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
                                 if (myCalendar != null)
-                                    scheduleClient.setAlarmForNotification(myCalendar);
+                                    scheduleClient.setAlarmForNotification(myCalendar, myDb.getID(name.getText().toString()));
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
