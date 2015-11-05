@@ -138,8 +138,7 @@ public class AddTask extends Activity {
                         }
                     }
                 }
-        );
-    }
+        );}
 
     public void addDate() {
         endDate.setOnClickListener(new View.OnClickListener() {
