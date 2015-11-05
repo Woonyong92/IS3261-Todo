@@ -61,6 +61,8 @@
             android:name=".LocationMaps"
             android:label="@string/title_activity_location_maps" >
         </activity>
+        <service android:name=".ScheduleService" />
+        <service android:name=".NotifyService" />
     </application>
 
 </manifest>

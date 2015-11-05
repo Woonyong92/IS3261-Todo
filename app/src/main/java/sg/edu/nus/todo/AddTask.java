@@ -79,7 +79,8 @@ public class AddTask extends Activity {
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Data Inserted", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
-                                scheduleClient.setAlarmForNotification(myCalendar);
+                                if (myCalendar != null)
+                                    scheduleClient.setAlarmForNotification(myCalendar);
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Data not Inserted", Toast.LENGTH_LONG).show();
@@ -116,6 +117,8 @@ public class AddTask extends Activity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         endTime.setText( selectedHour + ":" + selectedMinute);
+                        myCalendar.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        myCalendar.set(Calendar.MINUTE,selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
