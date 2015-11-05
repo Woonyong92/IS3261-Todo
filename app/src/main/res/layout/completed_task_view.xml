@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/taskTextView"
-        android:textSize="20sp"
-        android:text="New Text" />
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_marginLeft="260dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/rsz_delete_button"
-        android:id="@+id/deleteButton"
-        android:background="@android:color/transparent"
-        android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/taskTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="20sp"
+            android:layout_weight="0.8"/>
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/deleteButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/rsz_delete_button" />
+
+    </LinearLayout>
+</LinearLayout>

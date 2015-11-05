@@ -130,8 +130,9 @@ public class EditTask extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (name.getText().toString().matches(""))
-                            Toast.makeText(EditTask.this, "Ensure name is filled up", Toast.LENGTH_SHORT).show();
+                        if (name.getText().toString().matches("")||description.getText().toString().matches("")||endDate.getText().toString().matches("")||endTime.getText().toString().matches("")) {
+                                Toast.makeText(EditTask.this, "Ensure all required(*) fields is filled up", Toast.LENGTH_LONG).show();
+                        }
                         else {
                             boolean isInserted = myDb.editData(ids, name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
@@ -172,7 +173,8 @@ public class EditTask extends Activity {
                 mTimePicker = new TimePickerDialog(EditTask.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        endTime.setText( selectedHour + ":" + selectedMinute);
+                        String output = String.format("%02d:%02d", selectedHour, selectedMinute);
+                        endTime.setText(output);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
