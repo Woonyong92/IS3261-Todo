@@ -161,7 +161,8 @@ public class AddTask extends Activity {
                 mTimePicker = new TimePickerDialog(AddTask.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        endTime.setText(selectedHour + ":" + selectedMinute);
+                        String output = String.format("%02d:%02d", selectedHour, selectedMinute);
+                        endTime.setText(output);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
