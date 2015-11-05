@@ -7,7 +7,7 @@
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout
@@ -21,6 +21,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:text="@string/taskNames"
             android:id="@+id/textName" />
 
@@ -45,6 +46,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:text="@string/taskDescriptions"
             android:id="@+id/textDescription" />
 

@@ -20,6 +20,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:text="@string/taskName"
             android:id="@+id/textName" />
 
@@ -44,6 +45,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:text="@string/taskDescription"
             android:id="@+id/textDescription" />
 

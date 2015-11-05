@@ -3,10 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="10dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="10dp"
     android:weightSum="1"
     tools:context="sg.edu.nus.todo.AddTask">
 
@@ -22,20 +20,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="4dp"
-            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="4dp"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/textName"
                     style="@style/Text.Bold"
                     android:layout_width="80dp"
+                    android:layout_gravity="top"
                     android:layout_height="wrap_content"
                     android:text="@string/taskName" />
 
@@ -57,6 +54,7 @@
                     style="@style/Text.Bold"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
                     android:text="@string/taskDescription" />
 
                 <TextView

@@ -7,11 +7,11 @@
     <string name="today">Today</string>
     <string name="add">Add Task</string>
     <string name="title_activity_add_task">AddTask</string>
-    <string name="taskName">Name</string>
+    <string name="taskName">Title</string>
     <string name="taskDescription">Description</string>
     <string name="endDate">End Date</string>
     <string name="endTime">End Time</string>
-    <string name="taskNames">Name*</string>
+    <string name="taskNames">Title*</string>
     <string name="taskDescriptions">Description*</string>
     <string name="endDates">End Date*</string>
     <string name="endTimes">End Time*</string>
@@ -24,7 +24,7 @@
     <string name="expired">Expired</string>
     <string name="completed">Completed</string>
     <string name="editTask">Edit Task</string>
-    <string name="contact">Person</string>
+    <string name="contact">Member</string>
     <string name="name">Name</string>
     <string name="number">Number</string>
     <string name="updateTask">Update Task</string>
