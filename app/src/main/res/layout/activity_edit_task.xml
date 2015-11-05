@@ -20,7 +20,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/taskName"
+            android:text="@string/taskNames"
             android:id="@+id/textName" />
 
         <EditText
@@ -44,7 +44,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/taskDescription"
+            android:text="@string/taskDescriptions"
             android:id="@+id/textDescription" />
 
         <EditText
@@ -68,7 +68,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/endDate"
+            android:text="@string/endDates"
             android:id="@+id/textEndDate" />
 
         <EditText
@@ -95,7 +95,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/endTime"
+            android:text="@string/endTimes"
             android:id="@+id/textEndTime" />
 
         <EditText

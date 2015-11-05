@@ -11,6 +11,10 @@
     <string name="taskDescription">Description</string>
     <string name="endDate">End Date</string>
     <string name="endTime">End Time</string>
+    <string name="taskNames">Name*</string>
+    <string name="taskDescriptions">Description*</string>
+    <string name="endDates">End Date*</string>
+    <string name="endTimes">End Time*</string>
     <string name="location">Location</string>
     <string name="delete">Delete</string>
     <string name="done">Done</string>
