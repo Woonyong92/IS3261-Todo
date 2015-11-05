@@ -21,9 +21,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String columnName5 = "endTime";
     public static final String columnName6 = "location";
     public static final String columnName7 = "status";
+    public static final String columnName8 = "contactName";
+    public static final String columnName9 = "contactNumber";
     private static final String SQLite_CREATE = "Create Table " + tableName + " (" + columnName1 +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + columnName2 + " TEXT NOT NULL, " + columnName3 +
-            " TEXT NOT NULL, " + columnName4 + " DATE NOT NULL, " + columnName5 + " IIME, " + columnName6 + " TEXT NOT NULL, " + columnName7 + " TEXT);";
+            " TEXT NOT NULL, " + columnName4 + " DATE NOT NULL, " + columnName5 + " IIME, " + columnName6 + " TEXT NOT NULL, " +
+            columnName7 + " TEXT, " + columnName8 + " TEXT, " + columnName9 + " TEXT);";
     private static final String SQLite_DELETE = "DROP TABLE IF EXISTS " + tableName;
     Calendar myCalender = Calendar.getInstance();
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,7 +46,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String description, String endDate, String endTime, String location, String status) {
+    public boolean insertData(String name, String description, String endDate, String endTime, String location, String status,
+                              String contactName, String contactNumber) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(columnName2, name);
@@ -52,6 +56,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
         contentValues.put(columnName5, endTime);
         contentValues.put(columnName6, location);
         contentValues.put(columnName7, status);
+        contentValues.put(columnName8, contactName);
+        contentValues.put(columnName9, contactNumber);
         Long result = (db.insert(tableName, null, contentValues));
         if (result == -1)
             return false;
@@ -59,7 +65,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean editData(String id, String name, String description, String endDate, String endTime, String location, String status) {
+    public boolean editData(String id, String name, String description, String endDate, String endTime, String location, String status,
+                            String contactName, String contactNumber) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(columnName2, name);
@@ -68,6 +75,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
         contentValues.put(columnName5, endTime);
         contentValues.put(columnName6, location);
         contentValues.put(columnName7, status);
+        contentValues.put(columnName8, contactName);
+        contentValues.put(columnName9, contactNumber);
         int result = db.update(tableName, contentValues, columnName1 + " " + "=" + id, null);
         if (result == 1)
             return true;
