@@ -2,11 +2,16 @@ package sg.edu.nus.todo;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.os.BatteryManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -100,5 +105,22 @@ public class MainActivity extends Activity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
+        showNotification();
+    }
+
+    public void showNotification() {
+        PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+        Resources r = getResources();
+        Notification notification = new NotificationCompat.Builder(this)
+                .setTicker("Testing")
+                .setSmallIcon(android.R.drawable.ic_menu_report_image)
+                .setContentTitle("Testing")
+                .setContentText("Testing...")
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
     }
 }

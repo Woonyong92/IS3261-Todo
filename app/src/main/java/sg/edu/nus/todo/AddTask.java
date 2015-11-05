@@ -30,6 +30,7 @@ public class AddTask extends Activity {
     EditText name, description, location, endTime, endDate, contactName, contactNumber;
     Calendar myCalendar = Calendar.getInstance();
     public static final int PICK_CONTACT = 1;
+    private ScheduleClient scheduleClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class AddTask extends Activity {
         addTask();
         addTime();
         addDate();
+
+        scheduleClient = new ScheduleClient(getApplicationContext());
+        scheduleClient.doBindService();
     }
 
     @Override
@@ -125,14 +129,15 @@ public class AddTask extends Activity {
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
+                                if (myCalendar != null)
+                                    scheduleClient.setAlarmForNotification(myCalendar);
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
-        );
-    }
+        );}
 
     public void addDate() {
         endDate.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +165,9 @@ public class AddTask extends Activity {
                 mTimePicker = new TimePickerDialog(AddTask.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        endTime.setText(selectedHour + ":" + selectedMinute);
+                        endTime.setText( selectedHour + ":" + selectedMinute);
+                        myCalendar.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        myCalendar.set(Calendar.MINUTE,selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
