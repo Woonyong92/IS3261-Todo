@@ -20,7 +20,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/taskNames"
+            android:text="@string/taskName"
             android:id="@+id/textName" />
 
         <EditText
@@ -44,7 +44,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/taskDescriptions"
+            android:text="@string/taskDescription"
             android:id="@+id/textDescription" />
 
         <EditText
@@ -68,7 +68,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/endDates"
+            android:text="@string/endDate"
             android:id="@+id/textEndDate" />
 
         <EditText
@@ -95,7 +95,7 @@
             style="@style/Text.Bold"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/endTimes"
+            android:text="@string/endTime"
             android:id="@+id/textEndTime" />
 
         <EditText
@@ -151,22 +151,11 @@
             android:id="@+id/textContact" />
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:id="@+id/textContactName"
             android:hint="@string/name"
             android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:id="@+id/textNumber"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/number"
-            android:inputType="number"
             android:textSize="@dimen/font_input" />
 
         <Button
@@ -177,6 +166,24 @@
             android:id="@+id/addContacts"
             android:background="@android:color/transparent"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:layout_marginStart="80dp"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textNumber"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/number"
+            android:inputType="number"
+            android:textSize="@dimen/font_input" />
     </LinearLayout>
 
     <Button

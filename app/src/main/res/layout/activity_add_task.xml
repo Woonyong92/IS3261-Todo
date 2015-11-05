@@ -152,23 +152,12 @@
             android:id="@+id/textContact" />
 
         <EditText
-            android:layout_width="0dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:id="@+id/textContactName"
             android:layout_gravity="center_vertical"
             android:hint="@string/name"
             android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:id="@+id/textNumber"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/number"
-            android:inputType="number"
             android:textSize="@dimen/font_input" />
 
         <Button
@@ -182,12 +171,33 @@
             />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:layout_weight="0.16">
+
+        <EditText
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:id="@+id/textNumber"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/number"
+            android:inputType="number"
+            android:textSize="@dimen/font_input" />
+    </LinearLayout>
+
+    <Button
         android:id="@+id/addTask"
-        android:layout_gravity="center_horizontal"/>
+        style="@style/Button.Green"
+        android:layout_width="351dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/add" />
 
 
 </LinearLayout>
