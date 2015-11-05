@@ -3,195 +3,212 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="10dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="10dp"
     android:weightSum="1"
     tools:context="sg.edu.nus.todo.AddTask">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
-        <TextView
-            android:id="@+id/textName"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/taskName" />
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/editName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/textName"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_gravity="top"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taskName" />
 
-        <TextView
-            android:id="@+id/textDescription"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/taskDescription" />
+                <TextView
+                    android:id="@+id/editName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/editDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/textDescription"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:text="@string/taskDescription" />
 
-        <TextView
-            android:id="@+id/textEndDate"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/endDate" />
+                <TextView
+                    android:id="@+id/editDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/editEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="date" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/textEndDate"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/endDate" />
 
-        <TextView
-            android:id="@+id/textEndTime"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/endTime" />
+                <TextView
+                    android:id="@+id/editEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="date" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/editEndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="time" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
 
+                <TextView
+                    android:id="@+id/textEndTime"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/endTime" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/textLocation"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/location" />
-
-        <TextView
-            android:id="@+id/editLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/textContact"
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/contact" />
-
-        <TextView
-            android:id="@+id/editContactName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6" />
-
-        <TextView
-            android:id="@+id/editContactNumber"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4" />
+                <TextView
+                    android:id="@+id/editEndTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="time" />
+            </LinearLayout>
 
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/textLocation"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location" />
 
-        <Button
-            android:id="@+id/call"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/phone"
-            android:onClick="onClick_Call" />
+                <TextView
+                    android:id="@+id/editLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/sms"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/sms"
-            android:onClick="onClick_goToSMS" />
+            <LinearLayout
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textContact"
+                    style="@style/Text.Bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact" />
 
-    <Button
-        android:id="@+id/getLocation"
-        style="@style/Button.Green"
-        android:layout_width="351dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onClick_goToGetLocation"
-        android:text="@string/getLocation" />
+                <TextView
+                    android:id="@+id/editContactName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/editTask"
-        style="@style/Button.Green"
-        android:layout_width="351dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:onClick="onClick_goToEditTask"
-        android:text="@string/editTask" />
+            <LinearLayout
+                android:id="@+id/contactBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/editContactNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_weight="0.4" />
+
+                <Button
+                    android:id="@+id/sms"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/sms"
+                    android:onClick="onClick_goToSMS" />
+
+                <Button
+                    android:id="@+id/call"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/phone"
+                    android:onClick="onClick_Call" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/getLocation"
+                style="@style/Button.Green"
+                android:layout_width="351dp"
+                android:layout_height="41dp"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onClick_goToGetLocation"
+                android:text="@string/getLocation" />
+
+            <Button
+                android:id="@+id/editTask"
+                style="@style/Button.Green"
+                android:layout_width="351dp"
+                android:layout_height="41dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:onClick="onClick_goToEditTask"
+                android:text="@string/editTask" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:weightSum="1"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/taskTextView"
-        android:textSize="20sp" />
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/done_buttons"
-        android:id="@+id/doneButton"
-        android:background="@android:color/transparent"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/deleteButton" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/taskTextView"
+            android:textSize="20sp"
+            android:layout_weight="0.8"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/rsz_delete_button"
-        android:id="@+id/deleteButton"
-        android:background="@android:color/transparent"
-        android:layout_alignParentRight="true"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/done_buttons"
+            android:layout_gravity="top"
+            android:id="@+id/doneButton"
+            android:background="@android:color/transparent" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rsz_delete_button"
+            android:layout_gravity="top"
+            android:id="@+id/deleteButton"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
