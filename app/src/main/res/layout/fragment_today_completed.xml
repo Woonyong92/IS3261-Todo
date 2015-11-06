@@ -17,15 +17,5 @@
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         android:background="@drawable/background">
-
-        <Button
-            style="@style/Button.Green"
-            android:layout_width="360dp"
-            android:layout_height="41dp"
-            android:text="@string/addTask"
-            android:id="@+id/addTask"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center_vertical|center|center_horizontal"
-            android:onClick="onClick_goToAddTask"/>
     </LinearLayout>
 </LinearLayout>

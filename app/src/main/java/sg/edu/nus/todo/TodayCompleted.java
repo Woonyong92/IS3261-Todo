@@ -37,9 +37,4 @@ public class TodayCompleted extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void onClick_goToAddTask(View view) {
-        Intent myIntent = new Intent(this, AddTask.class);
-        startActivity(myIntent);
-    }
 }
