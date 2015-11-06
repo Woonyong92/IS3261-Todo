@@ -40,4 +40,8 @@ public class AlarmTask implements Runnable {
         // Sets an alarm - note this alarm will be lost if the phone is turned off and on again
         am.set(AlarmManager.RTC, date.getTimeInMillis(), pendingIntent);
     }
+
+    public void cancel(PendingIntent pi){
+
+    }
 }

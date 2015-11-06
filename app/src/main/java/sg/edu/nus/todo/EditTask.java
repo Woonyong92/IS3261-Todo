@@ -1,14 +1,18 @@
 package sg.edu.nus.todo;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +33,8 @@ public class EditTask extends Activity {
     String ids, names, descriptions, endDates, endTimes, locations, contactNames, contactNumbers;
     Calendar myCalendar = Calendar.getInstance();
     public static final int PICK_CONTACT = 1;
+    private ScheduleClient scheduleClient;
+    private AlarmManager am;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,9 @@ public class EditTask extends Activity {
         editTask();
         addTime();
         addDate();
+
+        scheduleClient = new ScheduleClient(getApplicationContext());
+        scheduleClient.doBindService();
     }
 
     @Override
@@ -140,6 +149,19 @@ public class EditTask extends Activity {
                             if (isInserted) {
                                 Toast.makeText(EditTask.this, "Task Updated", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(EditTask.this, MainActivity.class);
+
+                                Context context = getApplicationContext();
+                                Intent intent = new Intent(context, NotifyService.class);
+                                intent.putExtra(NotifyService.INTENT_NOTIFY, true);
+                                intent.putExtra("task id", myDb.getID(name.getText().toString()));
+                                Log.d("alarm task", "id is " + myDb.getID(name.getText().toString()));
+                                PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+                                am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                                am.cancel(pendingIntent);
+                                
+                                if (myCalendar != null)
+                                    scheduleClient.setAlarmForNotification(myCalendar, myDb.getID(name.getText().toString()));
+
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(EditTask.this, "Task not Updated", Toast.LENGTH_LONG).show();
