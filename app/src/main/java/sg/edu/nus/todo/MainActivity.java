@@ -10,6 +10,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.BatteryManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,17 +25,27 @@ public class MainActivity extends Activity {
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
     IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    MyDBHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fragment fragment = new TodayFragment();
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.contentFragment, fragment);
-        fragmentTransaction.commit();
+        myDb = new MyDBHelper(this);
+        Cursor res = myDb.getToday();
+        if(res!=null && res.getCount()>0) {
+            Fragment fragment = new TodayFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentFragment, fragment);
+            fragmentTransaction.commit();
+        }
+        else{
+            Fragment fragment = new TodayCompletedFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentFragment, fragment);
+            fragmentTransaction.commit();
+        }
 
         Intent batteryStatus = this.registerReceiver(null, ifilter);
 
@@ -76,11 +87,19 @@ public class MainActivity extends Activity {
     }
 
     public void onClick_changeToToday(View view) {
-        Fragment fragment = new TodayFragment();
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contentFragment, fragment);
-        fragmentTransaction.commit();
+        Cursor res = myDb.getToday();
+        if(res!=null && res.getCount()>0) {
+            Fragment fragment = new TodayFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentFragment, fragment);
+            fragmentTransaction.commit();
+        }
+        else{
+            Fragment fragment = new TodayCompletedFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentFragment, fragment);
+            fragmentTransaction.commit();
+        }
     }
 
     public void onClick_changeToUpcoming(View view) {
