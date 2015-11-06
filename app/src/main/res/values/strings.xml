@@ -37,5 +37,9 @@
     <string name="title_activity_location_map">Map</string>
     <string name="title_activity_location_maps">Map</string>
     <string name="getLocation">Get Location</string>
+    <string name="title_activity_today_completed">TodayCompleted</string>
+    <string name="addTask">Add Task</string>
+    <string name="show">Show Task</string>
+    <string name="taskDetail">Task Details</string>
 
 </resources>

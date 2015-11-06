@@ -2,200 +2,225 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingRight="16dp"
-    android:paddingLeft="16dp"
-    android:orientation = "vertical"
+    android:orientation="vertical"
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/navigationbar">
 
         <TextView
             style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:text="@string/taskName"
-            android:id="@+id/textName" />
-
-        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editName"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/taskName"
-            android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/updateTask"
+            android:textColor="#fffefb"
+            android:textIsSelectable="false"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:weightSum="1">
 
-        <TextView
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:text="@string/taskDescription"
-            android:id="@+id/textDescription" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editDescription"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/taskDescription"
-            android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input"/>
-    </LinearLayout>
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/textName"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="@string/taskName" />
 
-        <TextView
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/endDate"
-            android:id="@+id/textEndDate" />
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/taskName"
+                android:inputType="textPersonName|textCapWords"
+                android:textSize="@dimen/font_input" />
+        </LinearLayout>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/endDate"
-            android:id="@+id/editEndDate"
-            android:focusable="false"
-            android:layout_weight="1" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textDescription"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="@string/taskDescription" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/taskDescription"
+                android:inputType="textPersonName|textCapWords"
+                android:textSize="@dimen/font_input" />
+        </LinearLayout>
 
-        <TextView
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/endTime"
-            android:id="@+id/textEndTime" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/endTime"
-            android:focusable="false"
-            android:id="@+id/editEndTime"
-            android:layout_weight="1" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textEndDate"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/endDate" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
+            <EditText
+                android:id="@+id/editEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/endDate"
+                android:inputType="date" />
 
-        <TextView
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/location"
-            android:id="@+id/textLocation" />
+        </LinearLayout>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/location"
-            android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input"
-            android:id="@+id/editLocation" />
-    </LinearLayout>
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical"
-        android:layout_weight="0.00">
+            <TextView
+                android:id="@+id/textEndTime"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/endTime" />
 
-        <TextView
-            style="@style/Text.Bold"
-            android:layout_width="80dp"
+            <EditText
+                android:id="@+id/editEndTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/endTime"
+                android:inputType="time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/contact"
-            android:id="@+id/textContact" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
 
-        <EditText
-            android:layout_width="210dp"
+            <TextView
+                android:id="@+id/textLocation"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
+
+            <EditText
+                android:id="@+id/editLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/location"
+                android:inputType="textPersonName|textCapWords"
+                android:textSize="@dimen/font_input" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textContactName"
-            android:hint="@string/name"
-            android:inputType="textPersonName|textCapWords"
-            android:textSize="@dimen/font_input" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="0.00"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/textContact"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/contact" />
+
+            <EditText
+                android:id="@+id/textContactName"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="textPersonName|textCapWords"
+                android:textSize="@dimen/font_input" />
+
+            <Button
+                android:id="@+id/addContacts"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/add_contacts" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/textNumber"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="80dp"
+                android:hint="@string/number"
+                android:inputType="number"
+                android:textSize="@dimen/font_input" />
+        </LinearLayout>
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/add_contacts"
-            android:id="@+id/addContacts"
-            android:background="@android:color/transparent"
-            />
+            android:id="@+id/editTask"
+            style="@style/Button.Green"
+            android:layout_width="351dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/updateTask" />
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical">
-
-        <EditText
-            android:layout_marginStart="80dp"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textNumber"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/number"
-            android:inputType="number"
-            android:textSize="@dimen/font_input" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/editTask"
-        style="@style/Button.Green"
-        android:layout_width="351dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/updateTask" />
-
-
 </LinearLayout>
