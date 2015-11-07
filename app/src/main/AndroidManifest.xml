@@ -78,7 +78,6 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <service android:name=".ScheduleService" />
         <service android:name=".NotifyService" />
 
         <activity

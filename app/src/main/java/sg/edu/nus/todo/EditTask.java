@@ -33,7 +33,7 @@ public class EditTask extends Activity {
     String ids, names, descriptions, endDates, endTimes, locations, contactNames, contactNumbers;
     Calendar myCalendar = Calendar.getInstance();
     public static final int PICK_CONTACT = 1;
-    private ScheduleClient scheduleClient;
+
     private AlarmManager am;
 
     @Override
@@ -76,8 +76,7 @@ public class EditTask extends Activity {
         addTime();
         addDate();
 
-        scheduleClient = new ScheduleClient(getApplicationContext());
-        scheduleClient.doBindService();
+
     }
 
     @Override
@@ -149,19 +148,7 @@ public class EditTask extends Activity {
                             if (isInserted) {
                                 Toast.makeText(EditTask.this, "Task Updated", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(EditTask.this, MainActivity.class);
-
-                                Context context = getApplicationContext();
-                                Intent intent = new Intent(context, NotifyService.class);
-                                intent.putExtra(NotifyService.INTENT_NOTIFY, true);
-                                intent.putExtra("task id", myDb.getID(name.getText().toString()));
-                                Log.d("alarm task", "id is " + myDb.getID(name.getText().toString()));
-                                PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
-                                am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                                am.cancel(pendingIntent);
-
-                                if (myCalendar != null)
-                                    scheduleClient.setAlarmForNotification(myCalendar, myDb.getID(name.getText().toString()));
-
+                                
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(EditTask.this, "Task not Updated", Toast.LENGTH_LONG).show();
