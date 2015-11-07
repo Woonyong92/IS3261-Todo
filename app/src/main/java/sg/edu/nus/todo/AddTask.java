@@ -163,13 +163,14 @@ public class AddTask extends Activity {
 
                                 String[] date = endDate.getText().toString().split("/");
                                 String[] time = endTime.getText().toString().split(":");
-                                Log.d("state of calendar is ", myCalendar.getTime() + " ");
+                                //Log.d("state of calendar is ", myCalendar.getTime() + " ");
                                myCalendar.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0])
                                        , Integer.parseInt(time[0]), Integer.parseInt(time[1]));
-                                Log.d("state of calendar is ", date[0] + " " + date[1] + " "+ date[2] + " "+ time[0] + " "+ time[1]);
+                              //  Log.d("state of calendar is ", date[0] + " " + date[1] + " "+ date[2] + " "+ time[0] + " "+ time[1]);
 
-                                Log.d("state of calendar is ",  myCalendar.getTime() + " " );
+                               // Log.d("state of calendar is ",  myCalendar.getTime() + " " );
                                 scheduleNotification(getNotification(name.getText().toString()), myCalendar);
+                                
                                 // 30minutes, 1hr, 6hr, 1 day
                                 if (reminder_period.equals("30 minutes before")) {
                                     scheduleTimedNotification(getTimedNotification(name.getText().toString(), 0.5), myCalendar, 1800000);
