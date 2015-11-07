@@ -153,7 +153,7 @@ public class AddTask extends Activity {
                             Toast.makeText(AddTask.this, "Ensure all required(*) fields is filled up", Toast.LENGTH_LONG).show();
                         }
                         else {
-                            Log.d("111111111111", reminder_period);
+
                             boolean isInserted = myDb.insertData(name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
                                     null, contactName.getText().toString(), contactNumber.getText().toString(), reminder_period);
@@ -161,7 +161,10 @@ public class AddTask extends Activity {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
                                 //scheduleNotification(getNotification("name.getText().toString()"), myCalendar);
-
+                                if (reminder_period != null) {
+                                    Log.d("111111111111", reminder_period);
+                                    scheduleNotification(getNotification(name.getText().toString()), 4000);
+                                }
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
@@ -177,7 +180,7 @@ public class AddTask extends Activity {
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        long futureInMillis = delay;
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
