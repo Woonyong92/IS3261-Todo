@@ -78,7 +78,6 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <service android:name=".NotifyService" />
 
         <activity
             android:name=".TodayCompleted"
