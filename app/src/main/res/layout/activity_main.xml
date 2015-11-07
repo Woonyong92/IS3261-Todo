@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/today"
                 android:id="@+id/today"
-                android:background="@drawable/today_button"
+                android:background="@drawable/completed_button"
                 android:layout_gravity="center_horizontal"
                 android:onClick = "onClick_changeToToday"/>
             <Button
@@ -37,7 +37,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/expired"
-                android:background="@drawable/expired_button"
+                android:background="@drawable/today_button"
                 android:id="@+id/expired"
                 android:onClick = "onClick_changeToExpired"/>
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/completed"
                 android:id="@+id/completed"
-                android:background="@drawable/completed_button"
+                android:background="@drawable/expired_button"
                 android:onClick = "onClick_changeToCompleted"/>
 
         </LinearLayout>
