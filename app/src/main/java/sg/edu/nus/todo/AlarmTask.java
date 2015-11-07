@@ -25,6 +25,7 @@ public class AlarmTask implements Runnable {
         this.am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.date = date;
         task_id = id;
+        Log.d("INSTANTIATE ", "ALARMTASK: " + task_id);
     }
 
     @Override
@@ -33,15 +34,14 @@ public class AlarmTask implements Runnable {
         // We don't start an activity as we just want to pop up a notification into the system bar not a full activity
         Intent intent = new Intent(context, NotifyService.class);
         intent.putExtra(NotifyService.INTENT_NOTIFY, true);
+        Log.d("putting in the", "class id is " + task_id);
         intent.putExtra("task id", task_id);
-        Log.d("alarm task", "id is " + task_id);
+
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 
         // Sets an alarm - note this alarm will be lost if the phone is turned off and on again
         am.set(AlarmManager.RTC, date.getTimeInMillis(), pendingIntent);
     }
 
-    public void cancel(PendingIntent pi){
 
-    }
 }

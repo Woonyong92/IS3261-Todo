@@ -158,7 +158,7 @@ public class EditTask extends Activity {
                                 PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
                                 am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                                 am.cancel(pendingIntent);
-                                
+
                                 if (myCalendar != null)
                                     scheduleClient.setAlarmForNotification(myCalendar, myDb.getID(name.getText().toString()));
 

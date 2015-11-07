@@ -58,13 +58,13 @@ public class NotifyService extends Service {
             return START_STICKY;
         }
 
-    @Override
+/*    @Override
     public IBinder onBind(Intent intent) {
         Log.d("on bind", "yes");
         return null;
-    }
+    }*/
 
-/*
+
         @Override
         public IBinder onBind(Intent intent) {
             return mBinder;
@@ -72,7 +72,7 @@ public class NotifyService extends Service {
 
         // This is the object that receives interactions from clients
         private final IBinder mBinder = new ServiceBinder();
-*/
+
 
         /**
          * Creates a notification and shows it in the OS drag-down status bar
