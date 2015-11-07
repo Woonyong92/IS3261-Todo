@@ -61,6 +61,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
+                        android:paddingTop="5dp"
                         android:text="@string/taskName" />
 
                     <TextView
@@ -82,6 +83,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
+                        android:paddingTop="5dp"
                         android:text="@string/taskDescription" />
 
                     <TextView
