@@ -160,9 +160,28 @@ public class AddTask extends Activity {
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
-                                //scheduleNotification(getNotification("name.getText().toString()"), myCalendar);
-                                if (reminder_period != null) {
-                                    scheduleTimedNotification(getNotification(name.getText().toString()), myCalendar, 600000);
+
+                                String[] date = endDate.getText().toString().split("/");
+                                String[] time = endTime.getText().toString().split(":");
+                                Log.d("state of calendar is ", myCalendar.getTime() + " ");
+                               myCalendar.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0])
+                                       , Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+                                Log.d("state of calendar is ", date[0] + " " + date[1] + " "+ date[2] + " "+ time[0] + " "+ time[1]);
+
+                                Log.d("state of calendar is ",  myCalendar.getTime() + " " );
+                                scheduleNotification(getNotification(name.getText().toString()), myCalendar);
+                                // 30minutes, 1hr, 6hr, 1 day
+                                if (reminder_period.equals("30 minutes before")) {
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 0.5), myCalendar, 1800000);
+                                }
+                                else if (reminder_period.equals("1 hour before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 1), myCalendar, 3600000);
+                                }
+                                else if (reminder_period.equals("6 hours before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 6), myCalendar, 21600000);
+                                }
+                                else if (reminder_period.equals("1 day before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 24), myCalendar, 86400000);
                                 }
                                 startActivity(myIntent);
                             } else
@@ -198,6 +217,31 @@ public class AddTask extends Activity {
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
     }
+
+    private Notification getTimedNotification(String name, double delay) {
+        Notification.Builder builder = new Notification.Builder(this);
+
+        CharSequence title = "'" + name + "' is due " + delay + " hour(s) later!";
+        CharSequence text = "Click to view details";
+
+
+        builder.setTicker("Task Reminder!");
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setContentTitle(title);
+        builder.setContentText(text);
+        builder.setAutoCancel(true);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        builder.setLights(Color.YELLOW, 1000, 1000);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+        builder.setContentIntent(contentIntent);
+        return builder.build();
+    }
+
+
 
     private Notification getNotification(String name) {
         Notification.Builder builder = new Notification.Builder(this);
