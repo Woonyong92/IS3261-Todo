@@ -144,7 +144,7 @@ public class EditTask extends Activity {
                         else {
                             boolean isInserted = myDb.editData(ids, name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
-                                    null, contactName.getText().toString(), contactNumber.getText().toString());
+                                    null, contactName.getText().toString(), contactNumber.getText().toString(), contactNumber.getText().toString());
                             if (isInserted) {
                                 Toast.makeText(EditTask.this, "Task Updated", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(EditTask.this, MainActivity.class);

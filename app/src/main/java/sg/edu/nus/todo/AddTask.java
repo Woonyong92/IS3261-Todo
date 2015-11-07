@@ -10,6 +10,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -18,9 +20,12 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -34,6 +39,8 @@ public class AddTask extends Activity {
     Button btnAddTask, btnAddContact;
     EditText name, description, location, endTime, endDate, contactName, contactNumber;
     Calendar myCalendar = Calendar.getInstance();
+    Spinner reminder;
+    String reminder_period = "";
     public static final int PICK_CONTACT = 1;
 
 
@@ -50,6 +57,7 @@ public class AddTask extends Activity {
         contactName = (EditText) findViewById(R.id.textContactName);
         contactNumber = (EditText) findViewById(R.id.textNumber);
         btnAddContact = (Button) findViewById(R.id.addContacts);
+        reminder = (Spinner) findViewById(R.id.reminder_spinner);
         btnAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -58,10 +66,26 @@ public class AddTask extends Activity {
             }
         });
         btnAddTask = (Button) findViewById(R.id.addTask);
+
+        Spinner spinner = (Spinner)findViewById(R.id.reminder_spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.reminder_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
         addTask();
         addTime();
         addDate();
 
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
+        reminder.setSelection(position);
+        reminder_period = (String) reminder.getSelectedItem();
     }
 
     @Override
@@ -109,13 +133,7 @@ public class AddTask extends Activity {
         // automatically handle clicks on the Home/Up today_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     public void addTask() {
@@ -129,11 +147,12 @@ public class AddTask extends Activity {
                         else {
                             boolean isInserted = myDb.insertData(name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
-                                    null, contactName.getText().toString(), contactNumber.getText().toString());
+                                    null, contactName.getText().toString(), contactNumber.getText().toString(), reminder_period);
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
-                                scheduleNotification(getNotification("name.getText().toString()"), 30000);
+                                //scheduleNotification(getNotification("name.getText().toString()"), myCalendar);
+
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
@@ -154,11 +173,28 @@ public class AddTask extends Activity {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
-    private Notification getNotification(String content) {
+    private Notification getNotification(String name) {
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Scheduled Notification");
-        builder.setContentText(content);
+
+        CharSequence title = "Your task has expired!";
+        CharSequence text = "'" + name + "' has expired! Extend the task?";
+
+
+        builder.setTicker("Your task has expired!");
         builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setContentTitle(title);
+        builder.setContentText(text);
+        builder.setAutoCancel(true);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        builder.setLights(Color.YELLOW, 1000, 1000);
+
+/*        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+        builder.setContentIntent(contentIntent);*/
+
+
         return builder.build();
     }
 
