@@ -30,7 +30,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private static final String SQLite_CREATE = "Create Table " + tableName + " (" + columnName1 +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + columnName2 + " TEXT NOT NULL, " + columnName3 +
             " TEXT NOT NULL, " + columnName4 + " DATE NOT NULL, " + columnName5 + " IIME, " + columnName6 + " TEXT NOT NULL, " +
-            columnName7 + " TEXT, " + columnName8 + " TEXT, " + columnName9 + " TEXT, " + columnName10 + " TEXT + );";
+            columnName7 + " TEXT, " + columnName8 + " TEXT, " + columnName9 + " TEXT, " + columnName10 + " TEXT );";
     private static final String SQLite_DELETE = "DROP TABLE IF EXISTS " + tableName;
     Calendar myCalender = Calendar.getInstance(TimeZone.getTimeZone("GMT+8:00"));
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");

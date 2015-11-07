@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.Contacts.People;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +30,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
+import android.widget.AdapterView.OnItemSelectedListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -67,14 +68,26 @@ public class AddTask extends Activity {
         });
         btnAddTask = (Button) findViewById(R.id.addTask);
 
-        Spinner spinner = (Spinner)findViewById(R.id.reminder_spinner);
+        //Spinner spinner = (Spinner)findViewById(R.id.reminder_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.reminder_array, android.R.layout.simple_spinner_item);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        reminder.setAdapter(adapter);
+        reminder.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                reminder_period = parent.getItemAtPosition(position).toString();
+                Log.v("item", (String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         addTask();
         addTime();
@@ -82,11 +95,6 @@ public class AddTask extends Activity {
 
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        reminder.setSelection(position);
-        reminder_period = (String) reminder.getSelectedItem();
-    }
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
@@ -145,6 +153,7 @@ public class AddTask extends Activity {
                             Toast.makeText(AddTask.this, "Ensure all required(*) fields is filled up", Toast.LENGTH_LONG).show();
                         }
                         else {
+                            Log.d("111111111111", reminder_period);
                             boolean isInserted = myDb.insertData(name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
                                     null, contactName.getText().toString(), contactNumber.getText().toString(), reminder_period);
