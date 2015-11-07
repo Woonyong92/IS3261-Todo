@@ -162,8 +162,7 @@ public class AddTask extends Activity {
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
                                 //scheduleNotification(getNotification("name.getText().toString()"), myCalendar);
                                 if (reminder_period != null) {
-                                    Log.d("111111111111", reminder_period);
-                                    scheduleNotification(getNotification(name.getText().toString()), 4000);
+                                    scheduleTimedNotification(getNotification(name.getText().toString()), myCalendar, 600000);
                                 }
                                 startActivity(myIntent);
                             } else
@@ -173,16 +172,31 @@ public class AddTask extends Activity {
                 }
         );}
 
-    private void scheduleNotification(Notification notification, int delay) {
+    private void scheduleNotification(Notification notification, Calendar date) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long futureInMillis = delay;
+        long futureInMillis = date.getTimeInMillis();
+
+
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private void scheduleTimedNotification(Notification notification, Calendar date, long delay) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = date.getTimeInMillis() - delay;
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
     }
 
     private Notification getNotification(String name) {
@@ -201,12 +215,10 @@ public class AddTask extends Activity {
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         builder.setLights(Color.YELLOW, 1000, 1000);
 
-/*        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
 
-        builder.setContentIntent(contentIntent);*/
-
-
+        builder.setContentIntent(contentIntent);
         return builder.build();
     }
 

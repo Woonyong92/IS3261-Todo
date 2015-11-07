@@ -45,10 +45,9 @@
 
     <string-array name="reminder_array">
         <item>None</item>
-        <item>5 minutes before</item>
         <item>30 minutes before</item>
         <item>1 hour before</item>
-        <item>4 hours before</item>
+        <item>6 hours before</item>
         <item>1 day before</item>
     </string-array>
 </resources>
