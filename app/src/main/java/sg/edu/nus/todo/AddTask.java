@@ -42,7 +42,7 @@ public class AddTask extends Activity {
     EditText name, description, location, endTime, endDate, contactName, contactNumber;
     Calendar myCalendar = Calendar.getInstance();
     Spinner reminder;
-    String reminder_period = "";
+    String reminder_period = null;
     public static final int PICK_CONTACT = 1;
     int id;
 

@@ -172,4 +172,19 @@ transform: rotateY(0deg);}
 	left:20%;
 	top:70%;
 }
+        #myImg
+        {
+        -webkit-animation: fadeInLeft 1s;
+            animation: fadeInLeft 1s;
+/*            -webkit-transition: opacity 0.5s ease-in; //for chrome, safari
+            -moz-transition: opacity 0.5s ease-in; //for mozilla firefox
+            -o-transition: opacity 0.5s ease-in; //for opera*/
+            /*    position: absolute;
+            	left:20%;
+            	top:70%;*/
+        }
 
+.image {
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+}
