@@ -164,7 +164,7 @@ public class ShowTask extends Activity {
 
         float batteryPct = level / (float)scale;
 
-        if (batteryPct < 0.9) {
+        if (batteryPct < 0.15) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -193,6 +193,8 @@ public class ShowTask extends Activity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+        else
+            startActivity(mapIntent);
 
 
         //startActivity(mapIntent);
