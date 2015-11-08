@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:drawableTop="@drawable/checkbox"
-            android:layout_gravity="top"
+            android:layout_gravity="center"
             android:id="@+id/doneButton"
             android:background="@android:color/transparent" />
 
@@ -38,9 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/rsz_delete_button"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:id="@+id/deleteButton"
             android:background="@android:color/transparent" />
     </LinearLayout>
+
 
 </LinearLayout>
