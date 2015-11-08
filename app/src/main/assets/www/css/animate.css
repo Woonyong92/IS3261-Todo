@@ -9,22 +9,18 @@ Copyright (c) 2015 Daniel Eden
 */
 
 body {
-    background-image: url("./image/overall.png");
+    background-image: url("../image/overall.png");
 
 }
 
-#content {
-    position: absolute;
-    left:0%;
-    top:0%;
-}
+
 
 .image {
   -webkit-animation: fadeInLeft 1s;
   animation: fadeInLeft 2s;
   position: relative;
                 	left:0px;
-                	top:0px;
+                	top:20px;
   width:100%;
   height: auto;
   display: block;
@@ -33,6 +29,7 @@ body {
 .image1 {
   -webkit-animation: fadeInRight 1s;
   animation: fadeInRight 2s;
+  padding-top: 40px;
   width:100%;
   height: auto;
   opacity: 0;
@@ -46,6 +43,7 @@ body {
 .image2 {
   -webkit-animation: fadeInLeft 1s;
   animation: fadeInLeft 2s;
+    padding-top: 40px;
   width:100%;
   height: auto;
   opacity: 0;
@@ -56,18 +54,6 @@ body {
   animation-delay:4800ms;
 }
 
-.image3 {
-  -webkit-animation: fadeInRight 1s;
-  animation: fadeInRight 2s;
-  width:100%;
-  height: auto;
-  opacity: 0;
-  position: relative;
-  display: block;
-  animation-fill-mode: forwards;
-  -webkit-animation-delay:7200ms;
-  animation-delay:7200ms;
-}
 
 
 .animated {
