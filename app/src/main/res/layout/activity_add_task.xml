@@ -4,13 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="@drawable/overall"
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/navigationbar">
+        android:background="#563c38">
 
         <TextView
             style="@style/Text.Bold"
@@ -48,7 +49,9 @@
                 android:id="@+id/textName"
                 style="@style/Text.Bold"
                 android:layout_width="80dp"
+                android:paddingTop="5dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:text="@string/taskNames" />
 
             <EditText
@@ -57,7 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="@string/taskName"
-                android:inputType="textPersonName|textCapWords"
                 android:textSize="@dimen/font_input" />
         </LinearLayout>
 
@@ -73,6 +75,8 @@
                 style="@style/Text.Bold"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:paddingTop="5dp"
                 android:text="@string/taskDescriptions" />
 
             <EditText
@@ -81,7 +85,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="@string/taskDescription"
-                android:inputType="textPersonName|textCapWords"
                 android:textSize="@dimen/font_input" />
         </LinearLayout>
 
@@ -239,7 +242,8 @@
 
         <Button
             android:id="@+id/addTask"
-            style="@style/Button.Green"
+            android:background="#564b45"
+            android:textColor="#fff6fe"
             android:layout_width="351dp"
             android:layout_height="41dp"
             android:layout_gravity="center_horizontal"

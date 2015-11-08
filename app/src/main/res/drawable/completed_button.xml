@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true" >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#2aef20" />
-            <gradient android:angle="-90" android:startColor="#2be24e" android:endColor="#7fec5e"  />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape
+            android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#000000" />
+            <solid android:color="#c9c9c9" />
+
         </shape>
     </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#26e512" />
-            <solid android:color="#4af121"/>
+
+    <item android:right="1dp" android:left="1dp">
+        <shape
+            android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#c9c9c9" />
+            <solid android:color="#00000000" />
         </shape>
     </item>
-    <item >
-        <shape android:shape="rectangle"  >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#2ff320" />
-            <gradient android:angle="-90" android:startColor="#9ef197" android:endColor="#47ee35" />
-        </shape>
-    </item>
-</selector>
+
+</layer-list>
