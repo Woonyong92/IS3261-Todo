@@ -29,7 +29,7 @@ body {
 .image1 {
   -webkit-animation: fadeInRight 1s;
   animation: fadeInRight 2s;
-  padding-top: 40px;
+  padding-top: 60px;
   width:100%;
   height: auto;
   opacity: 0;

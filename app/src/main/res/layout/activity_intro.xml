@@ -15,9 +15,12 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:drawableTop="@drawable/next"
+        android:background="@android:color/transparent"
+        android:id="@+id/startApp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="btn_goToApp"
+        android:visibility="gone"/>
 
 </RelativeLayout>
