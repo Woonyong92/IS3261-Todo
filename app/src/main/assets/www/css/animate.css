@@ -8,6 +8,11 @@ Licensed under the MIT license - http://opensource.org/licenses/MIT
 Copyright (c) 2015 Daniel Eden
 */
 
+body {
+    background-image: url("./image/overall.png");
+
+}
+
 #content {
     position: absolute;
     left:0%;
@@ -49,6 +54,19 @@ Copyright (c) 2015 Daniel Eden
   animation-fill-mode: forwards;
   -webkit-animation-delay:4800ms;
   animation-delay:4800ms;
+}
+
+.image3 {
+  -webkit-animation: fadeInRight 1s;
+  animation: fadeInRight 2s;
+  width:100%;
+  height: auto;
+  opacity: 0;
+  position: relative;
+  display: block;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay:7200ms;
+  animation-delay:7200ms;
 }
 
 
