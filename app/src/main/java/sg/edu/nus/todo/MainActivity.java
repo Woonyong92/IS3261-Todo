@@ -47,16 +47,19 @@ public class MainActivity extends Activity {
             fragmentTransaction.commit();
         }
 
-        Intent batteryStatus = this.registerReceiver(null, ifilter);
+/*        Intent batteryStatus = this.registerReceiver(null, ifilter);
 
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                 status == BatteryManager.BATTERY_STATUS_FULL;
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
+        float batteryPct = level / (float)scale;
         if (isCharging)
-            Toast.makeText(this, "Battery is charging", Toast.LENGTH_LONG).show() ;
+            Toast.makeText(this, "Battery is charging at " + batteryPct , Toast.LENGTH_LONG).show() ;
         else
-            Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;
+            Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;*/
     }
 
     @Override

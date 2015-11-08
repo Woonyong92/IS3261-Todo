@@ -1,8 +1,12 @@
 package sg.edu.nus.todo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -20,6 +25,8 @@ public class ShowTask extends Activity {
     TextView name, description, location, endTime, endDate, contactName, contactNumber;
     TextView reminder;
     String ids, names, descriptions, endDates, endTimes, locations, status, contactNames, contactNumbers, reminders;
+    IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    Intent mapIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,9 +151,51 @@ public class ShowTask extends Activity {
 
     public void onClick_goToGetLocation(View view) {
         Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + locations);
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+
+        Intent batteryStatus = this.registerReceiver(null, ifilter);
+
+        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+        float batteryPct = level / (float)scale;
+
+        if (batteryPct < 0.9) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Battery low");
+            builder.setMessage("This will open a battery intensive application. Are you sure?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    startActivity(mapIntent);
+                    dialog.dismiss();
+                }
+
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
+
+        //startActivity(mapIntent);
     }
 
     public void onClick_goToSMS(View view) {
