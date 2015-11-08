@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
         this.list = list;
         this.context = context;
         this.adapter = this;
+
     }
 
     @Override
@@ -51,6 +54,9 @@ public class ArrayAdaptor extends BaseAdapter implements ListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.task_view, null);
         }
+
+
+
 
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.taskTextView);

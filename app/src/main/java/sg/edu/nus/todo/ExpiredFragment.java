@@ -53,6 +53,7 @@ public class ExpiredFragment extends Fragment {
             row.add(res.getString(6));
             row.add(res.getString(7));
             row.add(res.getString(8));
+            row.add(res.getString(9));
             list.add(row);
         }
         return list;

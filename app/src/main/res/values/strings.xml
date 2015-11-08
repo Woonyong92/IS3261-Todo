@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDo</string>
+    <string name="app_name">Task Manager</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -28,6 +28,7 @@
     <string name="name">Name</string>
     <string name="number">Number</string>
     <string name="updateTask">Update Task</string>
+    <string name="reminder">Reminder</string>
     updateTask
 
 <!-- TODO: Remove or change this placeholder text -->
@@ -42,4 +43,11 @@
     <string name="show">Show Task</string>
     <string name="taskDetail">Task Details</string>
 
+    <string-array name="reminder_array">
+        <item>None</item>
+        <item>30 minutes before</item>
+        <item>1 hour before</item>
+        <item>6 hours before</item>
+        <item>1 day before</item>
+    </string-array>
 </resources>

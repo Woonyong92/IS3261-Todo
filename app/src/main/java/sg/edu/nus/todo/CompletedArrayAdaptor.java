@@ -89,6 +89,7 @@ public class CompletedArrayAdaptor extends BaseAdapter implements ListAdapter {
                 myIntent.putExtra("status", list.get(position).get(6));
                 myIntent.putExtra("contactName", list.get(position).get(7));
                 myIntent.putExtra("contactNumber", list.get(position).get(8));
+                myIntent.putExtra("reminder", list.get(position).get(9));
                 v.getContext().startActivity(myIntent);
             }
         });

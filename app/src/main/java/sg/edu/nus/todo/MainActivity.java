@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
-    IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+   // IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     MyDBHelper myDb;
 
     @Override
@@ -47,16 +47,19 @@ public class MainActivity extends Activity {
             fragmentTransaction.commit();
         }
 
-        Intent batteryStatus = this.registerReceiver(null, ifilter);
+/*        Intent batteryStatus = this.registerReceiver(null, ifilter);
 
         int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                 status == BatteryManager.BATTERY_STATUS_FULL;
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
+        float batteryPct = level / (float)scale;
         if (isCharging)
-            Toast.makeText(this, "Battery is charging", Toast.LENGTH_LONG).show() ;
+            Toast.makeText(this, "Battery is charging at " + batteryPct , Toast.LENGTH_LONG).show() ;
         else
-            Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;
+            Toast.makeText(this, "Battery is not charging", Toast.LENGTH_LONG).show() ;*/
     }
 
     @Override
@@ -124,22 +127,6 @@ public class MainActivity extends Activity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.contentFragment, fragment);
         fragmentTransaction.commit();
-        showNotification();
     }
 
-    public void showNotification() {
-        PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
-        Resources r = getResources();
-        Notification notification = new NotificationCompat.Builder(this)
-                .setTicker("Testing")
-                .setSmallIcon(android.R.drawable.ic_menu_report_image)
-                .setContentTitle("Testing")
-                .setContentText("Testing...")
-                .setContentIntent(pi)
-                .setAutoCancel(true)
-                .build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
-    }
 }

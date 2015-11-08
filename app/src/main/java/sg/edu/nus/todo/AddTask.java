@@ -1,25 +1,36 @@
 package sg.edu.nus.todo;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Contacts.People;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
+import android.widget.AdapterView.OnItemSelectedListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -29,8 +40,10 @@ public class AddTask extends Activity {
     Button btnAddTask, btnAddContact;
     EditText name, description, location, endTime, endDate, contactName, contactNumber;
     Calendar myCalendar = Calendar.getInstance();
+    Spinner reminder;
+    String reminder_period = "";
     public static final int PICK_CONTACT = 1;
-    private ScheduleClient scheduleClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,7 @@ public class AddTask extends Activity {
         contactName = (EditText) findViewById(R.id.textContactName);
         contactNumber = (EditText) findViewById(R.id.textNumber);
         btnAddContact = (Button) findViewById(R.id.addContacts);
+        reminder = (Spinner) findViewById(R.id.reminder_spinner);
         btnAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -53,13 +67,34 @@ public class AddTask extends Activity {
             }
         });
         btnAddTask = (Button) findViewById(R.id.addTask);
+
+        //Spinner spinner = (Spinner)findViewById(R.id.reminder_spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.reminder_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        reminder.setAdapter(adapter);
+        reminder.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                reminder_period = parent.getItemAtPosition(position).toString();
+                Log.v("item", (String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         addTask();
         addTime();
         addDate();
 
-        scheduleClient = new ScheduleClient(getApplicationContext());
-        scheduleClient.doBindService();
     }
+
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
@@ -106,13 +141,7 @@ public class AddTask extends Activity {
         // automatically handle clicks on the Home/Up today_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     public void addTask() {
@@ -124,14 +153,37 @@ public class AddTask extends Activity {
                             Toast.makeText(AddTask.this, "Ensure all required(*) fields is filled up", Toast.LENGTH_LONG).show();
                         }
                         else {
+
                             boolean isInserted = myDb.insertData(name.getText().toString(),
                                     description.getText().toString(), endDate.getText().toString(), endTime.getText().toString(), location.getText().toString(),
-                                    null, contactName.getText().toString(), contactNumber.getText().toString());
+                                    null, contactName.getText().toString(), contactNumber.getText().toString(), reminder_period);
                             if (isInserted) {
                                 Toast.makeText(AddTask.this, "Task Added", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(AddTask.this, MainActivity.class);
-                                if (myCalendar != null)
-                                    scheduleClient.setAlarmForNotification(myCalendar);
+
+                                String[] date = endDate.getText().toString().split("/");
+                                String[] time = endTime.getText().toString().split(":");
+                                //Log.d("state of calendar is ", myCalendar.getTime() + " ");
+                               myCalendar.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0])
+                                       , Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+                              //  Log.d("state of calendar is ", date[0] + " " + date[1] + " "+ date[2] + " "+ time[0] + " "+ time[1]);
+
+                               // Log.d("state of calendar is ",  myCalendar.getTime() + " " );
+                                scheduleNotification(getNotification(name.getText().toString()), myCalendar);
+
+                                // 30minutes, 1hr, 6hr, 1 day
+                                if (reminder_period.equals("30 minutes before")) {
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 0.5), myCalendar, 1800000);
+                                }
+                                else if (reminder_period.equals("1 hour before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 1), myCalendar, 3600000);
+                                }
+                                else if (reminder_period.equals("6 hours before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 6), myCalendar, 21600000);
+                                }
+                                else if (reminder_period.equals("1 day before")){
+                                    scheduleTimedNotification(getTimedNotification(name.getText().toString(), 24), myCalendar, 86400000);
+                                }
                                 startActivity(myIntent);
                             } else
                                 Toast.makeText(AddTask.this, "Task not Added", Toast.LENGTH_LONG).show();
@@ -139,6 +191,82 @@ public class AddTask extends Activity {
                     }
                 }
         );}
+
+    private void scheduleNotification(Notification notification, Calendar date) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = date.getTimeInMillis();
+
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private void scheduleTimedNotification(Notification notification, Calendar date, long delay) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = date.getTimeInMillis() - delay;
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private Notification getTimedNotification(String name, double delay) {
+        Notification.Builder builder = new Notification.Builder(this);
+
+        CharSequence title = "'" + name + "' is due " + delay + " hour(s) later!";
+        CharSequence text = "Click to view details";
+
+
+        builder.setTicker("Task Reminder!");
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setContentTitle(title);
+        builder.setContentText(text);
+        builder.setAutoCancel(true);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        builder.setLights(Color.YELLOW, 1000, 1000);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+        builder.setContentIntent(contentIntent);
+        return builder.build();
+    }
+
+
+
+    private Notification getNotification(String name) {
+        Notification.Builder builder = new Notification.Builder(this);
+
+        CharSequence title = "Your task has expired!";
+        CharSequence text = "'" + name + "' has expired! Extend the task?";
+
+
+        builder.setTicker("Your task has expired!");
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setContentTitle(title);
+        builder.setContentText(text);
+        builder.setAutoCancel(true);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        builder.setLights(Color.YELLOW, 1000, 1000);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+        builder.setContentIntent(contentIntent);
+        return builder.build();
+    }
+
 
     public void addDate() {
         endDate.setOnClickListener(new View.OnClickListener() {
@@ -197,4 +325,6 @@ public class AddTask extends Activity {
             updateLabel();
         }
     };
+
+
 }

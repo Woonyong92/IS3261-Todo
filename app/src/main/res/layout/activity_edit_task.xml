@@ -213,6 +213,27 @@
                 android:textSize="@dimen/font_input" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="0.16"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/textReminder"
+                style="@style/Text.Bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reminder" />
+
+            <Spinner
+                android:id="@+id/reminder_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
         <Button
             android:id="@+id/editTask"
             style="@style/Button.Green"
