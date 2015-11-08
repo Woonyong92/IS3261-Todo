@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation = "vertical"
+    android:background="@drawable/overall"
     tools:context=".MainActivity">
 
     <HorizontalScrollView
@@ -20,8 +21,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/today"
                 android:id="@+id/today"
-                android:background="@drawable/completed_button"
+                android:background="@drawable/today_button"
                 android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textSize="17sp"
                 android:onClick = "onClick_changeToToday"/>
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -29,6 +32,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/upcoming"
                 android:id="@+id/upcoming"
+                android:textColor="#000000"
+                android:textSize="17sp"
                 android:background="@drawable/upcoming_button"
                 android:onClick = "onClick_changeToUpcoming"/>
 
@@ -37,8 +42,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/expired"
-                android:background="@drawable/today_button"
+                android:background="@drawable/expired_button"
                 android:id="@+id/expired"
+                android:textColor="#000000"
+                android:textSize="17sp"
                 android:onClick = "onClick_changeToExpired"/>
 
             <Button
@@ -47,7 +54,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/completed"
                 android:id="@+id/completed"
-                android:background="@drawable/expired_button"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                android:background="@drawable/completed_button"
                 android:onClick = "onClick_changeToCompleted"/>
 
         </LinearLayout>
