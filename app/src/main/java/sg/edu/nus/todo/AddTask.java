@@ -32,6 +32,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -43,7 +44,7 @@ public class AddTask extends Activity {
     Spinner reminder;
     String reminder_period = "";
     public static final int PICK_CONTACT = 1;
-
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,7 +214,7 @@ public class AddTask extends Activity {
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long futureInMillis = date.getTimeInMillis() - delay - 1000;
+        long futureInMillis = date.getTimeInMillis() - delay - 60000;
 
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
@@ -235,8 +236,28 @@ public class AddTask extends Activity {
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         builder.setLights(Color.YELLOW, 1000, 1000);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+        id = myDb.getID(name);
+        Cursor res = myDb.getAllData(id);
+
+
+        Intent notificationIntent = new Intent(this, ShowTask.class);
+        res.moveToNext();
+        notificationIntent.putExtra("id", id);
+        notificationIntent.putExtra("name", res.getString(1));
+        notificationIntent.putExtra("description", res.getString(2));
+        notificationIntent.putExtra("endDate", res.getString(3));
+        notificationIntent.putExtra("endTime", res.getString(4));
+        notificationIntent.putExtra("location", res.getString(5));
+        notificationIntent.putExtra("status", res.getString(6));
+        notificationIntent.putExtra("contactName", res.getString(7));
+        notificationIntent.putExtra("contactNumber", res.getString(8));
+        notificationIntent.putExtra("reminder", res.getString(9));
+
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+
 
         builder.setContentIntent(contentIntent);
         return builder.build();
@@ -260,7 +281,25 @@ public class AddTask extends Activity {
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         builder.setLights(Color.YELLOW, 1000, 1000);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),
+        id = myDb.getID(name);
+        Cursor res = myDb.getAllData(id);
+
+
+        Intent notificationIntent = new Intent(this, ShowTask.class);
+        res.moveToNext();
+        notificationIntent.putExtra("id", id);
+        notificationIntent.putExtra("name", res.getString(1));
+        notificationIntent.putExtra("description", res.getString(2));
+        notificationIntent.putExtra("endDate", res.getString(3));
+        notificationIntent.putExtra("endTime", res.getString(4));
+        notificationIntent.putExtra("location", res.getString(5));
+        notificationIntent.putExtra("status", res.getString(6));
+        notificationIntent.putExtra("contactName", res.getString(7));
+        notificationIntent.putExtra("contactNumber", res.getString(8));
+        notificationIntent.putExtra("reminder", res.getString(9));
+
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
 
         builder.setContentIntent(contentIntent);

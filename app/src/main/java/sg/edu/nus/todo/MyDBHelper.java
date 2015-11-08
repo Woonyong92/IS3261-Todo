@@ -90,9 +90,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public Cursor getAllData() {
+    public Cursor getAllData(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " +tableName, null);
+        String[] args={Integer.toString(id)};
+        Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName1 + " = ?", args);
         return res;
     }
 
@@ -131,7 +132,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     }
 
     public int getID(String name) {
-        Log.d("db helper", "NAMMEEEEEEEE ISSS " +name);
+        //Log.d("db helper", "NAMMEEEEEEEE ISSS " +name);
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args={name};
         Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName2 + " = ?", args);
@@ -140,7 +141,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     }
 
     public String getName(int id) {
-        Log.d("db helper", "id is " +id);
+        //Log.d("db helper", "id is " +id);
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args={Integer.toString(id)};
         Cursor res = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + columnName1 + " = ?", args);
