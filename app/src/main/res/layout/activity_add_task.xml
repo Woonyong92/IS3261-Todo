@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/navigationbar">
+        android:background="#563c38">
 
         <TextView
             style="@style/Text.Bold"
@@ -221,7 +221,8 @@
 
         <Button
             android:id="@+id/addTask"
-            style="@style/Button.Green"
+            android:background="#564b45"
+            android:textColor="#fff6fe"
             android:layout_width="351dp"
             android:layout_height="41dp"
             android:layout_gravity="center_horizontal"
