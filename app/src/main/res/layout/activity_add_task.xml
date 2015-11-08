@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="@drawable/overall"
     tools:context="sg.edu.nus.todo.AddTask">
 
     <LinearLayout

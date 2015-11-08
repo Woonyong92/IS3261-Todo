@@ -22,6 +22,8 @@
                 android:id="@+id/today"
                 android:background="@drawable/completed_button"
                 android:layout_gravity="center_horizontal"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
                 android:onClick = "onClick_changeToToday"/>
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -29,6 +31,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/upcoming"
                 android:id="@+id/upcoming"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
                 android:background="@drawable/upcoming_button"
                 android:onClick = "onClick_changeToUpcoming"/>
 
@@ -39,6 +43,8 @@
                 android:text="@string/expired"
                 android:background="@drawable/today_button"
                 android:id="@+id/expired"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
                 android:onClick = "onClick_changeToExpired"/>
 
             <Button
@@ -47,6 +53,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/completed"
                 android:id="@+id/completed"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
                 android:background="@drawable/expired_button"
                 android:onClick = "onClick_changeToCompleted"/>
 
