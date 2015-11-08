@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction;
-    IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+   // IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     MyDBHelper myDb;
 
     @Override
