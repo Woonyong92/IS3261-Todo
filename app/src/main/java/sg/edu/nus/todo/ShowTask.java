@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -17,7 +18,8 @@ public class ShowTask extends Activity {
 
     Button btnEditTask,getLocation;
     TextView name, description, location, endTime, endDate, contactName, contactNumber;
-    String ids, names, descriptions, endDates, endTimes, locations, status, contactNames, contactNumbers;
+    TextView reminder;
+    String ids, names, descriptions, endDates, endTimes, locations, status, contactNames, contactNumbers, reminders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class ShowTask extends Activity {
         status = getIntent().getStringExtra("status");
         contactNames = getIntent().getStringExtra("contactName");
         contactNumbers = getIntent().getStringExtra("contactNumber");
+        reminders = getIntent().getStringExtra("reminder");
         setContentView(R.layout.activity_show_task);
         name = (TextView) findViewById(R.id.editName);
         description = (TextView) findViewById(R.id.editDescription);
@@ -41,6 +44,7 @@ public class ShowTask extends Activity {
         contactNumber = (TextView) findViewById(R.id.editContactNumber);
         btnEditTask = (Button) findViewById(R.id.editTask);
         getLocation = (Button) findViewById(R.id.getLocation);
+        reminder = (TextView) findViewById(R.id.editReminder);
         LinearLayout linearLocation = (LinearLayout) findViewById(R.id.location);
         LinearLayout linearContact = (LinearLayout) findViewById(R.id.contact);
         LinearLayout linearContactBtn = (LinearLayout) findViewById(R.id.contactBtn);
@@ -99,6 +103,7 @@ public class ShowTask extends Activity {
         location.setText(locations);
         contactName.setText(contactNames);
         contactNumber.setText(contactNumbers);
+        reminder.setText(reminders);
     }
 
     @Override
@@ -133,6 +138,7 @@ public class ShowTask extends Activity {
         myIntent.putExtra("location", locations);
         myIntent.putExtra("contactName", contactNames);
         myIntent.putExtra("contactNumber", contactNumbers);
+        myIntent.putExtra("reminder", reminders);
         startActivity(myIntent);
     }
 

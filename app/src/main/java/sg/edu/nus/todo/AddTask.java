@@ -170,7 +170,7 @@ public class AddTask extends Activity {
 
                                // Log.d("state of calendar is ",  myCalendar.getTime() + " " );
                                 scheduleNotification(getNotification(name.getText().toString()), myCalendar);
-                                
+
                                 // 30minutes, 1hr, 6hr, 1 day
                                 if (reminder_period.equals("30 minutes before")) {
                                     scheduleTimedNotification(getTimedNotification(name.getText().toString(), 0.5), myCalendar, 1800000);
