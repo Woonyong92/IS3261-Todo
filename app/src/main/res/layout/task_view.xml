@@ -12,7 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="5dp"
+
         android:gravity="center_vertical">
 
         <TextView
@@ -21,6 +22,7 @@
             android:text="New Text"
             android:id="@+id/taskTextView"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_weight="0.8"/>
 
         <Button
