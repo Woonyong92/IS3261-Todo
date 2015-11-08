@@ -1,14 +1,19 @@
 package sg.edu.nus.todo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class IntroActivity extends Activity {
 
@@ -20,7 +25,25 @@ public class IntroActivity extends Activity {
         WebView wv = (WebView)findViewById(R.id.webView1);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setWebChromeClient(new WebChromeClient());
+        wv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return (event.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
+
         wv.loadUrl("file:///android_asset/www/myHTML.html");
+
+        RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.intro);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(myIntent);
+            }
+
+        });
     }
 
     @Override

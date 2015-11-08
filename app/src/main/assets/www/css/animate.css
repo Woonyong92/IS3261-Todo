@@ -29,15 +29,28 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation: fadeInRight 1s;
   animation: fadeInRight 2s;
   width:100%;
-
   height: auto;
   opacity: 0;
   position: relative;
   display: block;
   animation-fill-mode: forwards;
-  -webkit-animation-delay:3000ms;
-  animation-delay:3000ms;
+  -webkit-animation-delay:2400ms;
+  animation-delay:2400ms;
 }
+
+.image2 {
+  -webkit-animation: fadeInLeft 1s;
+  animation: fadeInLeft 2s;
+  width:100%;
+  height: auto;
+  opacity: 0;
+  position: relative;
+  display: block;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay:4800ms;
+  animation-delay:4800ms;
+}
+
 
 .animated {
   -webkit-animation-duration: 1s;
