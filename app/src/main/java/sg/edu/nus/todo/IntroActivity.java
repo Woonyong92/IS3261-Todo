@@ -29,6 +29,13 @@ public class IntroActivity extends Activity {
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setWebChromeClient(new WebChromeClient());
 
+        wv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return (event.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
+        
         wv.loadUrl("file:///android_asset/www/myHTML.html");
 
         donebutton = (Button) findViewById(R.id.startApp);
